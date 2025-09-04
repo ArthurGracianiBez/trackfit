@@ -12,6 +12,7 @@ export function WorkoutCard({workout}: WorkoutCardProps) {
         <p>Duração: {workout.durationMinutes} min</p>
         <p>Intensidade: {workout.intensity}/5</p>
         <p>Data: {workout.date}</p>
+        <p>Anotações: {workout.notes}</p>
       </div>
     </>
   );
