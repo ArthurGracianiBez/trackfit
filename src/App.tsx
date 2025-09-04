@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Header } from "./components/header";
-import { WorkoutCard } from "./components/workout-card";
 import { WorkoutForm } from "./components/workout-form";
 import type { Workout } from "./types/workout";
 import { WorkoutList } from "./components/workout-list";
@@ -17,7 +16,9 @@ function App() {
       <Header />
 
       <main>
+        
         <WorkoutForm onAdd={addWorkout}/>
+        <button onClick={() => setListWorkout([])}>Limpar Treino</button>
         <WorkoutList workoutList={listWorkout} />
       </main>
     </>

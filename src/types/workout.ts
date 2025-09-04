@@ -6,4 +6,5 @@ export interface Workout {
   durationMinutes: number;
   intensity: Intencity;
   date: string;
+  notes?: string;
 }
