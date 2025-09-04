@@ -1,19 +1,18 @@
+import type { Workout } from "../types/workout";
+ 
 interface WorkoutCardProps {
-  id: string;
-  title: string;
-  durationMinutes: number;
-  intensity: 1 | 2 | 3 | 4 | 5;
-  date: string;
+  workout: Workout;
 }
-
-export function WorkoutCard(props: WorkoutCardProps) {
+ 
+export function WorkoutCard({workout}: WorkoutCardProps) {
   return (
     <>
       <div style={{ border: "1px solid #ccc", padding: "1rem" }}>
-        <h2>{props.title}</h2>
-        <p>Duração: {props.durationMinutes} min</p>
-        <p>Intensidade: {props.intensity}/5</p>
-        <p>Data: {props.date}</p>
+        <h2>{workout.title}</h2>
+        <p>Duração: {workout.durationMinutes} min</p>
+        <p>Intensidade: {workout.intensity}/5</p>
+        <p>Data: {workout.date}</p>
+        <p>Anotações: {workout.notes}</p>
       </div>
     </>
   );
