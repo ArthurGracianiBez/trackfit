@@ -12,7 +12,7 @@ export function AddWorkout(){
     
     return (
         <>
-        <h2>Adicionar novo treino</h2>
+        <h2 className="font-bold text-gray-800 text-xl mb-3">Adicionar novo treino</h2>
         <WorkoutForm onAdd={addWorkout}/>
         <WorkoutList workoutList={workouts}/>
         </>
