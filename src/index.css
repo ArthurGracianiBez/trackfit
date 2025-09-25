@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+.input {
+@apply border rounded p-2 border-blue-600
+}
+
+.button-blue {
+@apply bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:cursor-pointer
+}
+
+.button-white {
+@apply font-bold text-blue-600 hover:bg-blue-600 hover:text-white rounded border border-blue-600 p-2
+}
+
+.link-home {
+@apply text-blue-600 hover:underline font-bold
+}
+
+
+
+
+
+
+
