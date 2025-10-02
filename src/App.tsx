@@ -45,8 +45,8 @@ function App() {
                 index
                 element={
                   <Home removeWorkout={removeWorkout} workouts={workouts} />
-                }
-              />
+                }/>
+              
               <Route
                 path="/add"
                 element={<AddWorkout onAdd={addWorkout} workouts={workouts} />}
