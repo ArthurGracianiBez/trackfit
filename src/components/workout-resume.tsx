@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import type { Workout } from "../types/workout";
+import { useState } from "react";
 
 interface WorkoutResumeProps {
   workout: Workout;
   removeWorkout: (id: string) => void;
 }
+  
 
 export function WorkoutResume({ workout, removeWorkout }: WorkoutResumeProps) {
+  const [workouts, setWorkouts] = useState<Workout[]>([]);
   return (
     <div className="w-3/5 rounded-lg shadow px-3 py-4 flex flex-col gap-5 bg-white mb-3">
       <div className="flex justify-between">
@@ -20,10 +23,19 @@ export function WorkoutResume({ workout, removeWorkout }: WorkoutResumeProps) {
           >
             Detalhes
           </Link>
-
+        
           <button
             className="p-2 bg-red-600 text-white font-bold hover:cursor-pointer rounded"
-            onClick={() => removeWorkout(workout.id)}
+            onClick={() => {
+              fetch(`http://localhost:4000/workouts/${workout.id}`,{
+                headers: {
+                  'Content-type': 'application/json'
+                },
+                method: "DELETE",
+              })
+              .then((data) => data.json())
+              .then((data: Workout[]) => setWorkouts(data))
+            },[])}
           >
             Remover treino
           </button>

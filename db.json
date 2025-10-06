@@ -1,0 +1,11 @@
+{
+    "workouts": [
+    {
+        "id": "1",
+        "title": "Corrida",
+        "durationMinutes": 30,
+        "intensity": 3,
+        "date": "2025-08-10"
+    }
+  ]
+}
