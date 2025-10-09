@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { WorkoutList } from "../components/workout-list";
 import type { Workout } from "../types/workout";
 
-
-
 export function Home() {
   const [workouts, setWorkouts] = useState<Workout[]>([]);
 
@@ -16,11 +14,11 @@ export function Home() {
     })
     .then((data) => data.json())
     .then((data: Workout[]) => setWorkouts(data))
-  },[])
+  },[workouts])
 
   return (
     <>
-      <WorkoutList removeWorkout={removeWorkout} workoutList={workouts} />
+      <WorkoutList workoutList={workouts} />
     </>
   );
 }

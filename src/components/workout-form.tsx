@@ -7,13 +7,7 @@ import { workoutSchema, type WorkoutSchema } from "../schemas/workout-schemas";
 import type { Intencity } from "../types/intencity";
 
 
-interface WorkoutFormProps {
-    onAdd: (workout: Workout) => void;
-}
-
-
-
-export function WorkoutForm({onAdd}: WorkoutFormProps){
+export function WorkoutForm(){
     const { register, handleSubmit, formState: {errors}, reset } = useForm<WorkoutSchema>({
         resolver: zodResolver(workoutSchema),
     })
@@ -32,8 +26,13 @@ export function WorkoutForm({onAdd}: WorkoutFormProps){
             durationMinutes,
             intensity: intensity as Intencity,
             notes,
-        }
-        onAdd(workout);
+        };
+
+        fetch('http://localhost:4000/workouts',{
+            method: "POST",
+            body: JSON.stringify(workout),
+        });
+        
         reset();
     }
 
