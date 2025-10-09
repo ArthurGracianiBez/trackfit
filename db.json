@@ -1,0 +1,19 @@
+{
+  "workouts": [
+    {
+      "id": "1",
+      "title": "Corrida",
+      "durationMinutes": 30,
+      "intensity": 3,
+      "date": "2025-08-10"
+    },
+    {
+      "id": "84145ea3-1487-4c7d-bf6f-5945b549ea41",
+      "title": "Natação",
+      "date": "2025-10-10",
+      "durationMinutes": 60,
+      "intensity": 5,
+      "notes": "Aula de natação, as 14:00"
+    }
+  ]
+}

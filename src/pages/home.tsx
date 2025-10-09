@@ -1,15 +1,24 @@
+import { useEffect, useState } from "react";
 import { WorkoutList } from "../components/workout-list";
 import type { Workout } from "../types/workout";
 
-interface HomeProps {
-  workouts: Workout[];
-  removeWorkout: (id: string) => void;
-}
+export function Home() {
+  const [workouts, setWorkouts] = useState<Workout[]>([]);
 
-export function Home({ workouts, removeWorkout }: HomeProps) {
+  useEffect(() => {
+    fetch('http://localhost:4000/workouts',{
+      headers: {
+        'Content-type': 'application/json'
+      },
+      method: "GET",
+    })
+    .then((data) => data.json())
+    .then((data: Workout[]) => setWorkouts(data))
+  },[workouts])
+
   return (
     <>
-      <WorkoutList removeWorkout={removeWorkout} workoutList={workouts} />
+      <WorkoutList workoutList={workouts} />
     </>
   );
 }
