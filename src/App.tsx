@@ -4,6 +4,7 @@ import { lazy, Suspense } from "react";
 import { Loading } from "./components/loading";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorFallback } from "./components/error-fallback";
+import { WorkoutsProvider } from "./context/workout-context";
 
 const Home = lazy(() => import("./pages/home").then(module => ({default: module.Home})))
 const AddWorkout = lazy(() => import("./pages/add-workout").then(module => ({default: module.AddWorkout})))
@@ -12,20 +13,22 @@ const NotFound = lazy(() => import("./pages/not-found").then(module => ({default
 
 function App() {
   return (
-    <BrowserRouter>
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <Suspense fallback={<Loading />}>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />}/>
-              <Route path="/add" element={<AddWorkout/>}/>
-              <Route path="/workout/:id" element={<WorkoutDetails />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-        </Suspense>
-      </ErrorBoundary>
-    </BrowserRouter>
+    <WorkoutsProvider>
+      <BrowserRouter>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Suspense fallback={<Loading />}>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                  <Route index element={<Home />}/>
+                  <Route path="/add" element={<AddWorkout/>}/>
+                  <Route path="/workout/:id" element={<WorkoutDetails />} />
+                  <Route path="*" element={<NotFound />} />
+                </Route>
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
+      </BrowserRouter>
+    </WorkoutsProvider>
   );
 }
 

@@ -1,17 +1,13 @@
 import { Link } from "react-router-dom";
 import type { Workout } from "../types/workout";
-import { useCallback, useState } from "react";
+import { useWorkouts } from "../context/workout-context";
 
 interface WorkoutResumeProps {
   workout: Workout;
 }
 
 export function WorkoutResume({ workout }: WorkoutResumeProps) {
-  const removerWorkout = useCallback((id: string) => {
-    fetch(`http://localhost:4000/workouts/${id}`, {
-      method: "DELETE",
-    });
-  }, []);
+  const { removeWorkouts } = useWorkouts();
 
   return (
     <>
@@ -30,7 +26,7 @@ export function WorkoutResume({ workout }: WorkoutResumeProps) {
         
           <button
             className="p-2 bg-red-600 text-white font-bold hover:cursor-pointer rounded"
-            onClick={() => removerWorkout(workout.id)}
+            onClick={() => removeWorkouts(workout.id)}
           >
             Remover treino
           </button>
