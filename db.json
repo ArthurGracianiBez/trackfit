@@ -14,6 +14,22 @@
       "durationMinutes": 60,
       "intensity": 4,
       "notes": "Aula de Jiu-Jitsu."
+    },
+    {
+      "id": "4485662d-5ca6-4c05-afb4-65dd8f8ec24b",
+      "title": "Natação",
+      "date": "2025-10-15",
+      "durationMinutes": 120,
+      "intensity": 4,
+      "notes": "Aula de natação na piscina da unidade Aclimação."
+    },
+    {
+      "id": "4d317f16-e508-4c34-a305-e6b32163c2e4",
+      "title": "Vôlei",
+      "date": "2025-10-16",
+      "durationMinutes": 180,
+      "intensity": 5,
+      "notes": "Treino intermediário(Paraguai) das 16:00 as 17:30, Avançado das 18:00 as 19:30."
     }
   ]
 }

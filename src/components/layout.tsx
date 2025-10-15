@@ -7,6 +7,8 @@ export function Layout(){
                 <div className="flex justify-center items-center p-4 gap-5">
                     <Link className="link-home" to="/">Home</Link>
                     
+                    <Link className="link-home" to="/tableWorkouts">Tabela de Treinos</Link>
+
                     <Link className="link-home" to="/add">Novo Treino</Link>
                 </div>
             </nav>
