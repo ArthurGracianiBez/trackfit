@@ -1,8 +1,10 @@
 import { createContext, useContext, useState } from "react";
+import type { AuthUser } from "../types/auth-user";
+import Cookies from "js-cookie";
 
 interface AuthContextProps {
-    user: string | null;
-    login: (username: string) => void;
+    user: AuthUser | null;
+    login: (username: string) => Promise<void>;
     logout: () => void;
 }
 
@@ -12,22 +14,37 @@ interface AuthProviderProps {
     children: React.ReactNode;
 }
 
-export function AuthProvider({children}: AuthProviderProps) {
-    const [user, setUser] = useState<string | null>(null);
-    
-    function login(username: string) {
-    setUser(username);
-    localStorage.setItem("user", username);
-    }
-    
-    function logout() {
-        localStorage.removerItem("user");
-    }
+const API = import.meta.env.VITE_API_URL;   
 
-    return <AuthContext.Provider value={{user,login,logout}}>{children}</AuthContext.Provider>;
+export function AuthProvider({children}: AuthProviderProps) {
+    const [user, setUser] = useState<AuthUser | null>(null);
+    
+    async function login(username: string) {
+        const response = await fetch(`${API}/users?name=${username}`);
+        
+        const [data]: AuthUser[] = await response.json();
+        
+        setUser(data);
+        localStorage.setItem("user", JSON.stringify(data));
+        Cookies.set("user", JSON.stringify(data),{
+            expires: 10,
+        });
 }
 
-export function useAuth(){
+function logout() {
+    setUser(null);
+    localStorage.removeItem("user");
+    Cookies.remove("user");
+}
+
+return (
+    <AuthContext.Provider value={{user, login, logout}}>
+        {children}
+    </AuthContext.Provider>
+)
+}
+
+export function useAuth() {
     const ctx = useContext(AuthContext);
     if(!ctx) {
         throw new Error("useAuth deve ser usado dentro de AuthProvider")

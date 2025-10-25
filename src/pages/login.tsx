@@ -3,9 +3,11 @@ import { useAuth } from "../context/auth-context";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, type LoginSchema } from "../schemas/login-schema";
+import { useWorkouts } from "../context/workout-context";
 
 export function Login(){
-    const { login, user } = useAuth();
+    const { login } = useAuth();
+    const { fetchWorkouts } = useWorkouts();
     const navigate = useNavigate();
 
     const {
@@ -16,16 +18,19 @@ export function Login(){
             resolver: zodResolver(loginSchema),
         });
 
-        function onSubmit({username}: LoginSchema){
-            login(username);
+        async function onSubmit({username}: LoginSchema){
+            await login(username);
             navigate("/");
+            await fetchWorkouts();
         }
  
 
     return(
         <>
-        <div className="max-w-sm mx-auto p-4 bg-white shadow rounded">
+        <div className="max-w-sm mx-auto p-4 bg-white shadow rounded mt-50">
+
             <h2 className="text-xl font-bold mb-4">Login</h2>
+
             <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="username">Digite seu nome</label>
                 <input className="border rounded p-2" type="text" placeholder="Nome" 
@@ -35,6 +40,7 @@ export function Login(){
                 )}
                 <button type="submit" className="button-blue">Entrar</button>   
             </form>
+
         </div>
         </>
     )

@@ -1,0 +1,1 @@
+export const API_TRACKFIT = import.meta.env.VITE_API_URL;

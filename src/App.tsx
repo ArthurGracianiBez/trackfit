@@ -15,7 +15,11 @@ const NotFound = lazy(() => import("./pages/not-found").then(module => ({default
 
 function PrivateRoute({children}: {children: JSX.Element}) {
   const {user} = useAuth();
-  return user ? children : <Navigate to="/login" />;
+  if (user === null){
+    return <Navigate to="/login" />;
+  }else{
+    return children;
+  }
 }
 
 function App() {
@@ -26,13 +30,13 @@ function App() {
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Suspense fallback={<Loading />}>
               <Routes>
+                    <Route path="/login" element={<Login/>}/>
                   <Route path="/" element={<Layout />}>
                     <Route index element={<PrivateRoute><Home /></PrivateRoute>}/>
                     <Route path="/add" element={<PrivateRoute><AddWorkout/></PrivateRoute>}/>
-                    <Route path="/login" element={<Login/>}/>
-                    <Route path="/workout/:id" element={<WorkoutDetails />} />
-                    <Route path="*" element={<NotFound />} />
+                    <Route path="/workout/:id" element={<PrivateRoute><WorkoutDetails /></PrivateRoute>} />
                   </Route>
+                    <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
           </ErrorBoundary>
