@@ -5,10 +5,12 @@ import { useForm } from "react-hook-form";
 import { workoutSchema, type WorkoutSchema } from "../schemas/workout-schemas";
 import type { Intencity } from "../types/intencity";
 import { useWorkouts } from "../context/workout-context";
+import { useAuth } from "../context/auth-context";
 
 
 export function WorkoutForm(){
     const { saveWorkouts } = useWorkouts();
+    const { user } = useAuth();
     const { register, handleSubmit, formState: {errors}, reset } = useForm<WorkoutSchema>({
         resolver: zodResolver(workoutSchema),
     })
@@ -19,8 +21,12 @@ export function WorkoutForm(){
         durationMinutes, 
         intensity, 
         notes}: WorkoutSchema): Promise<void> {
+            if (!user) {
+                throw new Error("Usuario não está autentidado")
+            }
         const workout: Workout ={
             id: crypto.randomUUID(),
+            userId: user.id,
             title,
             date,
             durationMinutes,

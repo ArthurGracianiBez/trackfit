@@ -2,6 +2,7 @@
   "workouts": [
     {
       "id": "1",
+      "userId": "1",
       "title": "Corrida",
       "durationMinutes": 30,
       "intensity": 3,
@@ -9,11 +10,47 @@
     },
     {
       "id": "97c58ebd-2ffc-4f55-9220-8ec62b624cd8",
+      "userId": "3",
       "title": "Jiu-Jitsu",
       "date": "2025-10-13",
       "durationMinutes": 60,
       "intensity": 4,
       "notes": "Aula de Jiu-Jitsu."
+    },
+    {
+      "id": "aeb8feb6-abbc-4320-bc24-a8b2b17e9f3f",
+      "userId": "1",
+      "title": "Perna",
+      "date": "2025-10-25",
+      "durationMinutes": 120,
+      "intensity": 5,
+      "notes": "Treino de perna do Leandro, UserId: 1 !!!"
+    },
+    {
+      "id": "7523772e-c000-4ad3-81a9-7a85027c0881",
+      "userId": "2",
+      "title": "Braço do João",
+      "date": "2025-10-25",
+      "durationMinutes": 120,
+      "intensity": 4,
+      "notes": "Treino de braço do João."
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "leandro",
+      "type": "personal"
+    },
+    {
+      "id": "2",
+      "name": "joao",
+      "type": "gymmember"
+    },
+    {
+      "id": "3",
+      "name": "wesley",
+      "type": "personal"
     }
   ]
 }
